@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>ユーザー新規登録</title>
+    <link href="/css/add.css" rel="stylesheet"></link>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+  <table>
+    <tr th:if="${validationError}" th:each="error : ${validationError}">
+      <td style="color:red;" th:text="${error}"></td>
+    </tr>
+  </table>
+    <h1>ユーザー新規登録</h1>
+    <form th:action="@{/user/create}" th:object="${userRequest}" th:method="post">
+      <a href="/user/list">キャンセル</a>
+    <table>
+      <tr>
+        <th class="cell_title">名前</th>
+        <th class="cell_required">※</th>
+        <td><input type="text" th:field="*{name}"></td>
+      </tr>
+      <tr>
+        <th class="cell_title">住所</th>
+        <th class="cell_required"></th>
+        <td><input type="text" th:field="*{address}"></td>
+      </tr>
+      <tr>
+        <th class="cell_title">電話番号</th>
+        <th class="cell_required"></th>
+        <td><input type="text" th:field="*{phone}"></td>
+      </tr>
+    </table>
+    <div class="btn_area_center"><input type="submit" value="登録" class="btn"></div>
+  </form>
+  </body>
+</html>
